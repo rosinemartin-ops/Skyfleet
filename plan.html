@@ -1,0 +1,150 @@
+<html>
+<head>
+  <title>SkyFleet - Trip Planner</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #0077b6;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #005f8a;
+    }
+
+    .section-title {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #005f8a;
+    }
+
+    .output {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f0f0f0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>SkyFleet Trip Planner</h1>
+  <div class="container">
+    <!-- Hotel Booking -->
+    <div class="form-group">
+      <h2 class="section-title">Book a Hotel</h2>
+      <label for="hotel-city">Destination City</label>
+      <input type="text" id="hotel-city" placeholder="e.g., Paris">
+      <label for="hotel-dates">Check-in & Check-out Dates</label>
+      <input type="text" id="hotel-dates" placeholder="e.g., 10 Nov - 15 Nov">
+      <button onclick="bookHotel()">Book Hotel</button>
+    </div>
+
+    <!-- Tour Activities -->
+    <div class="form-group">
+      <h2 class="section-title">Select Tour Activities</h2>
+      <label for="activity-city">City</label>
+      <input type="text" id="activity-city" placeholder="e.g., Rome">
+      <label for="activities">Choose Activities</label>
+      <select id="activities" multiple>
+        <option>Museum Visit</option>
+        <option>City Tour</option>
+        <option>Adventure Sports</option>
+        <option>Beach Day</option>
+        <option>Food Tasting</option>
+      </select>
+      <button onclick="bookActivities()">Book Activities</button>
+    </div>
+
+    <!-- Holiday Package -->
+    <div class="form-group">
+      <h2 class="section-title">Book a Holiday Package</h2>
+      <label for="holiday-destination">Destination</label>
+      <input type="text" id="holiday-destination" placeholder="e.g., Maldives">
+      <label for="holiday-days">Number of Days</label>
+      <input type="number" id="holiday-days" min="1" placeholder="e.g., 5">
+      <button onclick="bookHoliday()">Book Holiday</button>
+    </div>
+
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    function bookHotel() {
+      const city = document.getElementById('hotel-city').value;
+      const dates = document.getElementById('hotel-dates').value;
+      const output = document.getElementById('output');
+      if (city && dates) {
+        output.innerText = `Hotel booked in ${city} from ${dates}.`;
+      } else {
+        output.innerText = "Please enter city and dates to book a hotel.";
+      }
+    }
+
+    function bookActivities() {
+      const city = document.getElementById('activity-city').value;
+      const selected = Array.from(document.getElementById('activities').selectedOptions).map(opt => opt.value);
+      const output = document.getElementById('output');
+      if (city && selected.length > 0) {
+        output.innerText = `Activities booked in ${city}: ${selected.join(', ')}.`;
+      } else {
+        output.innerText = "Please enter city and select at least one activity.";
+      }
+    }
+
+    function bookHoliday() {
+      const destination = document.getElementById('holiday-destination').value;
+      const days = document.getElementById('holiday-days').value;
+      const output = document.getElementById('output');
+      if (destination && days > 0) {
+        output.innerText = `Holiday package booked to ${destination} for ${days} days.`;
+      } else {
+        output.innerText = "Please enter destination and number of days.";
+      }
+    }
+  </script>
+</body>
+</html>

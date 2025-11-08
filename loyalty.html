@@ -1,0 +1,130 @@
+<html>
+<head>
+  <title>SkyFleet - Loyalty Membership</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .tier {
+      border-left: 6px solid #0077b6;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 5px;
+      background: #f9f9f9;
+    }
+
+    .tier h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .blue { border-color: #0077b6; }
+    .silver { border-color: #aaa; }
+    .gold { border-color: #f4b400; }
+
+    .tier p {
+      margin-top: 0.5rem;
+    }
+
+    select, button {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-left: 1rem;
+    }
+
+    button:hover {
+      background-color: #005f8a;
+    }
+
+    .output {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f0f0f0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>SkyFleet Loyalty Membership Tiers</h1>
+  <div class="container">
+    <div class="tier blue">
+      <h2>Blue Tier</h2>
+      <p>Enjoy free Wi-Fi throughout your flight.</p>
+    </div>
+
+    <div class="tier silver">
+      <h2>Silver Tier</h2>
+      <p>Get 30% discount on lounge access at select airports.</p>
+    </div>
+
+    <div class="tier gold">
+      <h2> Gold Tier</h2>
+      <p>Receive 75% bonus miles and complimentary seat selection in business class.</p>
+    </div>
+
+    <label for="tier-select">Select Your Tier:</label>
+    <select id="tier-select">
+      <option value="">--Choose Tier--</option>
+      <option value="blue">Blue</option>
+      <option value="silver">Silver</option>
+      <option value="gold">Gold</option>
+    </select>
+    <button onclick="showBenefits()">Show My Benefits</button>
+
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    function showBenefits() {
+      const tier = document.getElementById('tier-select').value;
+      const output = document.getElementById('output');
+      let message = "";
+
+      switch(tier) {
+        case "blue":
+          message = "As a Blue member, you enjoy free Wi-Fi throughout your flight.";
+          break;
+        case "silver":
+          message = "As a Silver member, you get 30% discount on lounge access at select airports.";
+          break;
+        case "gold":
+          message = "As a Gold member, you receive 75% bonus miles and complimentary seat selection in business class.";
+          break;
+        default:
+          message = "Please select a membership tier to view your benefits.";
+      }
+
+      output.innerText = message;
+    }
+  </script>
+</body>
+</html>

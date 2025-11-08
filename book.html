@@ -1,0 +1,178 @@
+<html>
+<head>
+  <title>SkyFleet Flight Booking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .booking-form {
+      width: 700px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .trip-type {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .multi-city-group {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    button {
+      background-color: #0077b6;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005f8a;
+    }
+  </style>
+</head>
+<body>
+  <h1>SkyFleet Flight Booking</h1>
+  <div class="booking-form">
+    <div class="form-group trip-type">
+      <label><input type="radio" name="trip" value="oneway" checked> One Way</label>
+      <label><input type="radio" name="trip" value="round"> Round Trip</label>
+      <label><input type="radio" name="trip" value="multi"> Multi City</label>
+    </div>
+
+    <div class="form-group">
+      <label for="from">Departure</label>
+      <input type="text" id="from" placeholder="City or Airport">
+    </div>
+
+    <div class="form-group">
+      <label for="to">Arrival</label>
+      <input type="text" id="to" placeholder="City or Airport">
+    </div>
+
+    <div class="form-group">
+      <label for="depart-date">Departing Date</label>
+      <input type="date" id="depart-date">
+    </div>
+
+    <div class="form-group" id="return-group" style="display: none;">
+      <label for="return-date">Return Date</label>
+      <input type="date" id="return-date">
+    </div>
+
+    <div class="multi-city-group" id="multi-city-group">
+      <div class="form-group">
+        <label for="multi-from">2nd Departure</label>
+        <input type="text" id="multi-from" placeholder="City or Airport">
+      </div>
+      <div class="form-group">
+        <label for="multi-to">2nd Arrival</label>
+        <input type="text" id="multi-to" placeholder="City or Airport">
+      </div>
+      <div class="form-group">
+        <label for="multi-date">2nd Departing Date</label>
+        <input type="date" id="multi-date">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="passengers">Passengers</label>
+      <input type="number" id="passengers" min="1" value="1">
+    </div>
+
+    <div class="form-group">
+      <label for="class">Class</label>
+      <select id="class">
+        <option>Economy</option>
+        <option>Premium Economy</option>
+        <option>Business</option>
+        <option>First</option>
+      </select>
+    </div>
+
+    <button onclick="submitBooking()">Search Flights</button>
+  </div>
+
+  <script>
+    const tripRadios = document.querySelectorAll('input[name="trip"]');
+    const returnGroup = document.getElementById('return-group');
+    const multiGroup = document.getElementById('multi-city-group');
+
+    tripRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.value === 'round') {
+          returnGroup.style.display = 'block';
+          multiGroup.style.display = 'none';
+        } else if (radio.value === 'multi') {
+          returnGroup.style.display = 'none';
+          multiGroup.style.display = 'block';
+        } else {
+          returnGroup.style.display = 'none';
+          multiGroup.style.display = 'none';
+        }
+      });
+    });
+
+    function submitBooking() {
+      const tripType = document.querySelector('input[name="trip"]:checked').value;
+      const from = document.getElementById('from').value;
+      const to = document.getElementById('to').value;
+      const depart = document.getElementById('depart-date').value;
+      const ret = document.getElementById('return-date').value;
+      const passengers = document.getElementById('passengers').value;
+      const travelClass = document.getElementById('class').value;
+
+      let message = `Trip Type: ${tripType}\nFrom: ${from}\nTo: ${to}\nDepart: ${depart}`;
+
+      if (tripType === 'round') {
+        message += `\nReturn: ${ret}`;
+      }
+
+      if (tripType === 'multi') {
+        const mFrom = document.getElementById('multi-from').value;
+        const mTo = document.getElementById('multi-to').value;
+        const mDate = document.getElementById('multi-date').value;
+        message += `\n2nd Leg: ${mFrom} to ${mTo} on ${mDate}`;
+      }
+
+      message += `\nPassengers: ${passengers}\nClass: ${travelClass}`;
+
+      alert("Booking Details:\n" + message);
+    }
+  </script>
+</body>
+</html>

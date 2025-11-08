@@ -1,0 +1,134 @@
+<html>
+<head>
+  <title>SkyFleet - Manage Booking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #0077b6;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #005f8a;
+    }
+
+    .section-title {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #005f8a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Manage Your Flight - SkyFleet</h1>
+  <div class="container">
+    <!-- Cancel Ticket -->
+    <div class="form-group">
+      <h2 class="section-title">Cancel Flight</h2>
+      <label for="cancel-ref">Booking Reference</label>
+      <input type="text" id="cancel-ref" placeholder="Enter booking reference">
+      <button onclick="cancelFlight()">Cancel Ticket</button>
+    </div>
+
+    <!-- Choose Seat -->
+    <div class="form-group">
+      <h2 class="section-title">Choose Seat</h2>
+      <label for="seat-ref">Booking Reference</label>
+      <input type="text" id="seat-ref" placeholder="Enter booking reference">
+      <label for="seat-number">Select Seat</label>
+      <select id="seat-number">
+        <option value="">--Choose--</option>
+        <option>1A</option>
+        <option>1B</option>
+        <option>2A</option>
+        <option>2B</option>
+        <option>3A</option>
+        <option>3B</option>
+      </select>
+      <button onclick="chooseSeat()">Confirm Seat</button>
+    </div>
+
+    <!-- Check-In -->
+    <div class="form-group">
+      <h2 class="section-title">Check-In</h2>
+      <label for="checkin-ref">Booking Reference</label>
+      <input type="text" id="checkin-ref" placeholder="Enter booking reference">
+      <button onclick="checkIn()">Check In</button>
+    </div>
+  </div>
+
+  <script>
+    function cancelFlight() {
+      const ref = document.getElementById('cancel-ref').value;
+      if (ref) {
+        alert(`Flight with reference ${ref} has been canceled.`);
+      } else {
+        alert("Please enter a booking reference.");
+      }
+    }
+
+    function chooseSeat() {
+      const ref = document.getElementById('seat-ref').value;
+      const seat = document.getElementById('seat-number').value;
+      if (ref && seat) {
+        alert(`Seat ${seat} has been assigned to booking ${ref}.`);
+      } else {
+        alert("Please enter booking reference and select a seat.");
+      }
+    }
+
+    function checkIn() {
+      const ref = document.getElementById('checkin-ref').value;
+      if (ref) {
+        alert(`Check-in successful for booking ${ref}.`);
+      } else {
+        alert("Please enter a booking reference.");
+      }
+    }
+  </script>
+</body>
+</html>

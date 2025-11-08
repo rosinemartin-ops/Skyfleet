@@ -1,0 +1,149 @@
+<html>
+<head>
+  <title>SkyFleet - Help & Contact</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background-color: #0077b6;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #005f8a;
+    }
+
+    .output {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f0f0f0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>SkyFleet Help & Contact Center</h1>
+  <div class="container">
+    <!-- Flight Change/Cancellation -->
+    <div class="form-group">
+      <h2>Change or Cancel Flight</h2>
+      <label for="booking-ref">Booking Reference</label>
+      <input type="text" id="booking-ref" placeholder="Enter booking reference">
+      <label for="change-type">Request Type</label>
+      <select id="change-type">
+        <option value="">--Select--</option>
+        <option value="change">Change Flight</option>
+        <option value="cancel">Cancel Flight</option>
+      </select>
+      <button onclick="handleFlight()">Submit Request</button>
+    </div>
+
+    <!-- Lost Property -->
+    <div class="form-group">
+      <h2>Report Lost Property</h2>
+      <label for="lost-desc">Item Description</label>
+      <textarea id="lost-desc" rows="3" placeholder="Describe the lost item..."></textarea>
+      <label for="lost-location">Last Known Location</label>
+      <input type="text" id="lost-location" placeholder="e.g., Gate 12, Flight SF123">
+      <button onclick="reportLost()">Report Item</button>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="form-group">
+      <h2>Contact Information</h2>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Your name">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="you@example.com">
+      <label for="message">Message</label>
+      <textarea id="message" rows="3" placeholder="Your message or inquiry..."></textarea>
+      <button onclick="submitContact()">Send Message</button>
+    </div>
+
+    <div id="output" class="output"></div>
+  </div>
+
+  <script>
+    function handleFlight() {
+      const ref = document.getElementById('booking-ref').value;
+      const type = document.getElementById('change-type').value;
+      const output = document.getElementById('output');
+      if (ref && type) {
+        output.innerText = `Your request to ${type} flight with reference ${ref} has been submitted.`;
+      } else {
+        output.innerText = "Please enter booking reference and select request type.";
+      }
+    }
+
+    function reportLost() {
+      const desc = document.getElementById('lost-desc').value;
+      const location = document.getElementById('lost-location').value;
+      const output = document.getElementById('output');
+      if (desc && location) {
+        output.innerText = `Lost item reported: "${desc}" last seen at ${location}. Our team will follow up.`;
+      } else {
+        output.innerText = "Please describe the item and provide last known location.";
+      }
+    }
+
+    function submitContact() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const output = document.getElementById('output');
+      if (name && email && message) {
+        output.innerText = `Thank you, ${name}. Your message has been received. We will contact you at ${email}.`;
+      } else {
+        output.innerText = "Please fill in all contact fields.";
+      }
+    }
+  </script>
+</body>
+</html>

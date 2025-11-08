@@ -1,0 +1,136 @@
+<html>
+<head>
+  <title>SkyFleet - Baggage Services</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background-color: #0077b6;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #005f8a;
+    }
+
+    .section-title {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #005f8a;
+    }
+  </style>
+</head>
+<body>
+  <h1>SkyFleet Baggage Services</h1>
+  <div class="container">
+    <!-- Extra Baggage -->
+    <div class="form-group">
+      <h2 class="section-title">Add Extra Baggage</h2>
+      <label for="extra-ref">Booking Reference</label>
+      <input type="text" id="extra-ref" placeholder="Enter booking reference">
+      <label for="extra-weight">Extra Baggage (kg)</label>
+      <input type="number" id="extra-weight" min="1" placeholder="e.g., 10">
+      <button onclick="addBaggage()">Add Baggage</button>
+    </div>
+
+    <!-- Delayed Baggage -->
+    <div class="form-group">
+      <h2 class="section-title">Report Delayed Baggage</h2>
+      <label for="delay-ref">Booking Reference</label>
+      <input type="text" id="delay-ref" placeholder="Enter booking reference">
+      <label for="delay-desc">Description</label>
+      <textarea id="delay-desc" rows="3" placeholder="Describe your delayed baggage..."></textarea>
+      <button onclick="reportDelay()">Report Delay</button>
+    </div>
+
+    <!-- Damaged Baggage -->
+    <div class="form-group">
+      <h2 class="section-title">Report Damaged Baggage</h2>
+      <label for="damage-ref">Booking Reference</label>
+      <input type="text" id="damage-ref" placeholder="Enter booking reference">
+      <label for="damage-desc">Description</label>
+      <textarea id="damage-desc" rows="3" placeholder="Describe the damage..."></textarea>
+      <button onclick="reportDamage()">Report Damage</button>
+    </div>
+  </div>
+
+  <script>
+    function addBaggage() {
+      const ref = document.getElementById('extra-ref').value;
+      const weight = document.getElementById('extra-weight').value;
+      if (ref && weight > 0) {
+        alert(`Extra ${weight}kg baggage added to booking ${ref}.`);
+      } else {
+        alert("Please enter a valid booking reference and baggage weight.");
+      }
+    }
+
+    function reportDelay() {
+      const ref = document.getElementById('delay-ref').value;
+      const desc = document.getElementById('delay-desc').value;
+      if (ref && desc) {
+        alert(`Delayed baggage reported for booking ${ref}.\nDetails: ${desc}`);
+      } else {
+        alert("Please enter booking reference and description.");
+      }
+    }
+
+    function reportDamage() {
+      const ref = document.getElementById('damage-ref').value;
+      const desc = document.getElementById('damage-desc').value;
+      if (ref && desc) {
+        alert(`Damaged baggage reported for booking ${ref}.\nDetails: ${desc}`);
+      } else {
+        alert("Please enter booking reference and description.");
+      }
+    }
+  </script>
+</body>
+</html>

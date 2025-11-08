@@ -1,0 +1,157 @@
+<html>
+<head>
+  <title>SkyFleet - Passenger Experience</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0f8ff, #e6e6fa);
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      color: #005f8a;
+      margin-bottom: 0.5rem;
+    }
+
+    .section p {
+      margin-bottom: 0.5rem;
+    }
+
+    select, button {
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background-color: #005f8a;
+    }
+
+    .output {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f0f0f0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>SkyFleet Passenger Experience</h1>
+  <div class="container">
+    <!-- Class Selection -->
+    <div class="section">
+      <h2>Select Travel Class</h2>
+      <select id="class-select">
+        <option value="">--Choose Class--</option>
+        <option value="first">First Class</option>
+        <option value="business">Business Class</option>
+        <option value="economy">Economy Class</option>
+      </select>
+    </div>
+
+    <!-- Live TV Experience -->
+    <div class="section">
+      <h2>Live TV Access</h2>
+      <button onclick="showTV()">Show TV Access</button>
+      <div id="tv-output" class="output"></div>
+    </div>
+
+    <!-- Dining Experience -->
+    <div class="section">
+      <h2>Dining & Drinks</h2>
+      <button onclick="showDining()">View Dining Options</button>
+      <div id="dining-output" class="output"></div>
+    </div>
+
+    <!-- Special Preferences -->
+    <div class="section">
+      <h2>Special Preferences</h2>
+      <button onclick="showPreferences()">View Services</button>
+      <div id="pref-output" class="output"></div>
+    </div>
+
+    <!-- Kids Toys -->
+    <div class="section">
+      <h2>Kids Toys & Entertainment</h2>
+      <button onclick="showToys()">View Toy Options</button>
+      <div id="toys-output" class="output"></div>
+    </div>
+  </div>
+
+  <script>
+    function getClass() {
+      return document.getElementById('class-select').value;
+    }
+
+    function showTV() {
+      const travelClass = getClass();
+      const output = document.getElementById('tv-output');
+      if (travelClass === "first") {
+        output.innerText = "Unlimited access to premium live TV, movies, sports, and personalized entertainment.";
+      } else if (travelClass === "business") {
+        output.innerText = "Access to a wide range of live TV channels, movies, and business news.";
+      } else if (travelClass === "economy") {
+        output.innerText = "Selected live TV channels and family-friendly entertainment available.";
+      } else {
+        output.innerText = "Please select a travel class to view TV access.";
+      }
+    }
+
+    function showDining() {
+      const travelClass = getClass();
+      const output = document.getElementById('dining-output');
+      if (travelClass === "first") {
+        output.innerText = "Five-star dining with gourmet meals, premium wines, cocktails, and personalized menus.";
+      } else if (travelClass === "business") {
+        output.innerText = "Elegant meals with complimentary drinks including wine, beer, and soft beverages.";
+      } else if (travelClass === "economy") {
+        output.innerText = "Tasty meals with complimentary soft drinks and snacks. Alcohol available for purchase.";
+      } else {
+        output.innerText = "Please select a travel class to view dining options.";
+      }
+    }
+
+    function showPreferences() {
+      const travelClass = getClass();
+      const output = document.getElementById('pref-output');
+      output.innerText = "All classes offer:\n- Priority boarding and comfort kits for pregnant passengers\n- Special meals and entertainment for children\n- Bassinets, diapers, and crew assistance for parents with infants.";
+    }
+
+    function showToys() {
+      const travelClass = getClass();
+      const output = document.getElementById('toys-output');
+      output.innerText = "Children receive age-appropriate toys such as coloring books, puzzles, plush animals, and interactive games. Available in all classes.";
+    }
+  </script>
+</body>
+</html>
